@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<title></title>
+
+<script src="http://content.jwplatform.com/libraries/d8o9nlO3.js"></script>
+</head>
+
+<body>
+
+<br>
+<input id="showAd" type="button" value="Insert Ad" onclick="insertAd();" />
+<br>
+<br>
+
+<!-- Holds JWPlayer -->
+<div id="ad_player">&nbsp;</div>
+
+
+<script>
+
+var ipWowza = "localhost";
+var ipAds = "localhost";
+var adURL = "http://"+ipWowza+":8086/insertadmarker";
+var appName = "live";
+var appInstName = "_definst_";
+var streamName = "myStream";
+
+
+// Insert JWPlayer into div
+var player =  jwplayer("ad_player");
+	player.setup({
+        file:"http://localhost:1935/live/myStream/playlist.m3u8",
+	    key: "license key goes here",
+	    width: 1280,
+	    height: 720,
+	    autostart: "true",
+	    primary: "flash",
+	    advertising: {
+	    	client: "vast"
+	    }
+        });
+
+// Detect ID3 tag and make Ad call
+player.onMeta(function(evt) {
+	if (evt.metadata.TXXX)
+	{
+		console.log(evt.metadata.TXXX);
+		var adUrl = evt.metadata.TXXX["adID"];
+		console.log(adUrl);
+		if (adUrl != undefined)
+			player.playAd(adUrl);
+	}
+});
+
+// Tell WSE to insert Ad marker 
+function insertAd()
+{
+	// The Ad we want to play
+	var adXMLUrl = "http://"+ipAds+"/ads/testVAST.xml";
+
+	var url = adURL + "?" + "application=" + encodeURIComponent(appName) + 
+	          "&streamName=" + encodeURIComponent(streamName) + 
+	          "&url=" + encodeURIComponent(adXMLUrl);
+
+	console.log(url);
+
+	sendPost(url, "");
+}
+
+// POST Utility
+function sendPost(url, params)
+{
+	var http = new XMLHttpRequest();
+
+	http.open("POST", url, true);
+
+	http.setRequestHeader("Content-Length", params.length);
+	http.setRequestHeader("Connection", "close");
+	http.setRequestHeader("Accept", "text/plain");
+	http.setRequestHeader("Content-Type", "text/plain");
+
+//	http.onreadystatechange = function()
+//	{
+//    		console.log('http.readyState:'+http.readyState+'  http.status:'+http.status);
+//		if(http.readyState == 4 && http.status == 200)
+//		{
+//   			console.log(http.responseText);
+//		}
+//	}
+
+	http.send(params);
+}
+
+</script>
+
+</body>
+</html>

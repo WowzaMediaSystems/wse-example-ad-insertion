@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<VAST version="3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vast3_draft.xsd">
+  <Ad id="midroll-1" sequence="1">
+    <InLine>
+      <AdSystem version="2.0">JW Player</AdSystem>
+      <AdTitle>Static Tag</AdTitle>
+      <Error>http://demo.jwplayer.com/static-tag/pixel.gif?err=[ERRORCODE]</Error>
+      <Impression>http://demo.jwplayer.com/static-tag/pixel.gif</Impression>
+      <Creatives>
+        <Creative sequence="1">
+          <Linear>
+            <Duration>00:00:15</Duration>
+            <TrackingEvents>
+              <Tracking event="start">http://demo.jwplayer.com/static-tag/pixel.gif</Tracking>
+              <Tracking event="firstQuartile">http://demo.jwplayer.com/static-tag/pixel.gif</Tracking>
+              <Tracking event="midpoint">http://demo.jwplayer.com/static-tag/pixel.gif</Tracking>
+              <Tracking event="thirdQuartile">http://demo.jwplayer.com/static-tag/pixel.gif</Tracking>
+              <Tracking event="complete">http://demo.jwplayer.com/static-tag/pixel.gif</Tracking>
+              <Tracking event="pause">http://demo.jwplayer.com/static-tag/pixel.gif</Tracking>
+              <Tracking event="mute">http://demo.jwplayer.com/static-tag/pixel.gif</Tracking>
+              <Tracking event="fullscreen">http://demo.jwplayer.com/static-tag/pixel.gif</Tracking>
+            </TrackingEvents>
+            <VideoClicks>
+              <ClickThrough>http://www.jwplayer.com</ClickThrough>
+              <ClickTracking>http://demo.jwplayer.com/static-tag/pixel.gif</ClickTracking>
+            </VideoClicks>
+            <MediaFiles>
+		    <MediaFile id="1" delivery="progressive" type="video/mp4" bitrate="400" width="640" height="360">http://localhost/ads/testAd.mp4</MediaFile>
+            </MediaFiles>
+          </Linear>
+        </Creative>
+        <Creative>
+         <CompanionAds>
+           <Companion id="1" width="300" height="250">
+             <StaticResource creativeType="image/jpg">http://demo.jwplayer.com/static-tag/jwplayer-rectangle.jpg</StaticResource>
+             <CompanionClickThrough>http://www.jwplayer.com</CompanionClickThrough>
+           </Companion>
+           <Companion id="2" width="728" height="90">
+             <StaticResource creativeType="image/jpg">http://demo.jwplayer.com/static-tag/jwplayer-leaderboard.jpg</StaticResource>
+             <CompanionClickThrough>http://www.jwplayer.com</CompanionClickThrough>
+          </Companion>
+        </CompanionAds>
+      </Creative>
+    </Creatives>
+  </InLine>
+</Ad>
+</VAST>
