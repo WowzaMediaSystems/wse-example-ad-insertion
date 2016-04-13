@@ -1,17 +1,19 @@
 # Player-side ad insertion
-With a few small pieces of custom Java and HTML code, you can extend [Wowza Streaming Engine™ media server software](https://www.wowza.com/products/streaming-engine) to insert ad requests on demand and enable a player to insert and broadcast ads during playback of live streams.
+With a few small pieces of custom Java and HTML code, you can extend [Wowza Streaming Engine™ media server software](https://www.wowza.com/products/streaming-engine) to insert ad requests dynamically and enable a player to insert and display ads during playback of live Apple HLS streams.
 
-The player-side ad insertion workflow uses an HTTP provider to enable Wowza Streaming Engine to receive a request to insert an ad break into a live stream. Then it uses an event-listener module to convert the HTTP request to an ID3 tag that it sends with the transmuxed Apple HLS stream to supporting players. Finally, custom code on the player side detects the tag and makes a Video Ad Serving Template (VAST) call to retrieve and play the ad during playback.
+The player-side ad insertion workflow uses an HTTP Provider to enable Wowza Streaming Engine to receive a request to insert an ad break into a live stream. Then it uses an event-listener module to convert the HTTP request to an ID3 tag that it sends with the transmuxed Apple HLS stream to supporting players. Finally, custom code on the player side detects the tag and makes a Video Ad Serving Template (VAST) call to retrieve and play the ad during playback.
 
 Example code and a sample ad are provided to demonstrate how to extend the Wowza Streaming Engine server and JW Player 7 to support player-side ad insertion.
-(**Dave** Is JW Player 7 required to run workflow described in this document? If so, what edition?)
+
 ## Prerequisites
 
-Wowza Streaming Engine 4.0.0 or later is required.
+Wowza Streaming Engine 4.0.0 or later.
 
-Player-side ad insertion files (**adDemo.zip**) are also required. The compressed (zipped) folder contains the following files: *(**Dave** consider adding the Readme.html file to this list, either first or last)*
+JW Player 7.0, cloud or self-hosted version.
 
-* **/java/HTTPProviderAdBreakInsertion.java** - An HTTP provider that allows Wowza Streaming Engine to accept an HTTP POST request to inject a data event into the ingested stream that's requesting the ad break.
+Player-side ad insertion files (**adDemo.zip**) are also required. The compressed (zipped) folder contains the following files:
+
+* **/java/HTTPProviderAdBreakInsertion.java** - An HTTP Provider that allows Wowza Streaming Engine to accept an HTTP POST request to inject a data event into the ingested stream that's requesting the ad break.
 
 * **/java/ModuleCupertinoLiveOnAdBreakToID3.java** - A Wowza Streaming Engine module that listens for the data event in the stream during transmuxing. It converts the event to an ID3 tag in the Apple HLS stream that Wowza Streaming Engine sends to the player.
 
@@ -21,7 +23,9 @@ Player-side ad insertion files (**adDemo.zip**) are also required. The compresse
 
 * **/html/testAd.mp4** - The sample ad.
 
-[Download adDemo.zip](https://www.wowza.com/downloads/forums/adDemo.zip) (**Dave** Temporarily uploaded sample 'adDemo.zip' file to /downloads/forums to verify link. Should probably be moved to /downloads/forums/adDemo but I don't have permissions to create the 'adDemo' folder in that directory.***
+* **readme.html** - A readme file.
+
+[Download adDemo.zip](https://www.wowza.com/downloads/forums/adDemo/adDemo.zip)
 
 ## Wowza Streaming Engine setup
 Start by preparing your Wowza Streaming Engine instance to receive and process an ad break request using the **live** application that comes pre-configured with the Wowza Streaming Engine Manager.
@@ -71,7 +75,7 @@ ModuleAdID3Tags | Converts ad requests to ID3 tags. | com.wowza.wms.plugin.addem
 
 ## Player configuration
 
-Copy the contents of **/html/** (**Dave** from the adDemo.zip folder) to a local web server, for example, to **/htdocs/ads/**.
+Copy the contents of **/html/** from the extracted **adDemo.zip** folder to a local web server, for example, to **localhost/ads/**.
 
 ## Final configuration
 1. Restart the Wowza Streaming Engine server.
@@ -85,8 +89,10 @@ Now you can make ad break requests in the live stream.
 
 2. When you want to insert an ad into the live stream, use a command-line tool such as Terminal to make an HTTP POST call to the Wowza Streaming Engine instance. The base resource for the request is the URL-encoded VAST ad URL. For example,
 ```
-http://localhost/adexample/_definst_/myStream/ad.ad?[URL-encoded-VAST-server-URL]
+http://localhost:8086/insertadmarker?application=live&streamName=myStream&url=http://localhost/ads/testVAST.xml
 ```
+
+Alternatively, click the **Insert Ad** button in **live_ad.html** to make the HTTP POST call for this demonstration.
 
 The ad appears in the player when the ad break occurs in the stream.
 
