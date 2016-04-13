@@ -1,3 +1,7 @@
+/*
+ * This code and all components (c) Copyright 2006 - 2016, Wowza Media Systems, LLC.  All rights reserved.
+ * This code is licensed pursuant to the Wowza Public License version 1.0, available at www.wowza.com/legal.
+ */
 package com.wowza.wms.plugin.addemo;
 
 import com.wowza.wms.amf.*;
@@ -7,10 +11,6 @@ import com.wowza.wms.media.mp3.model.idtags.*;
 import com.wowza.wms.module.*;
 import com.wowza.wms.stream.livepacketizer.*;
 
-/**
- * This code and all components (c) Copyright 2006 - 2016, Wowza Media Systems, LLC.  All rights reserved.
- * This code is licensed pursuant to the Wowza Public License version 1.0, available at www.wowza.com/legal.
- */
 public class ModuleCupertinoLiveOnAdBreakToID3 extends ModuleBase
 {
 	class LiveStreamPacketizerDataHandler implements IHTTPStreamerCupertinoLivePacketizerDataHandler
