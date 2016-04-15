@@ -3,7 +3,7 @@ With a few small pieces of custom Java and HTML code, you can extend [Wowza Stre
 
 The player-side ad insertion workflow uses an HTTP Provider to enable Wowza Streaming Engine to receive a request to insert an ad break into a live stream. Then it uses an event-listener module to convert the HTTP request to an ID3 tag that it sends with the transmuxed Apple HLS stream to supporting players. Finally, custom code on the player side detects the tag and makes a Video Ad Serving Template (VAST) call to retrieve and play the ad during playback.
 
-Example code and a sample ad are provided to demonstrate how to extend the Wowza Streaming Engine server and JW Player 7 to support player-side ad insertion.
+Example code and a sample ad are provided to demonstrate how to extend the Wowza Streaming Engine server to support player-side ad insertion for Apple HLS playback on JW Player. The same workflow with different code can be used to insert ads using a player that supports RTMP playback.
 
 ## Prerequisites
 
@@ -85,7 +85,7 @@ Copy the contents of **/html/** from the extracted **adDemo.zip** folder to a lo
 ## Usage
 Now you can make ad break requests in the live stream.
 
-1. In Wowza Streaming Engine Manger, start the stream source for the **live** application to begin your live streaming broadcast.
+1. In Wowza Streaming Engine Manager, start the stream source for the **live** application to begin your live streaming broadcast.
 
 2. When you want to insert an ad into the live stream, use a command-line tool such as Terminal to make an HTTP POST call to the Wowza Streaming Engine instance. The base resource for the request is the URL-encoded VAST ad URL. For example,
 ```
