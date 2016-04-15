@@ -97,6 +97,8 @@ Alternatively, click the **Insert Ad** button in **live_ad.html** to make the HT
 The ad appears in the player when the ad break occurs in the stream.
 
 ## More resources
+[How to enable player-side ad insertion using Wowza Streaming Engine (video tutorial)](https://www.wowza.com/forums/content.php?735-How-to-enable-player-side-ad-insertion-using-Wowza-Streaming-Engine)
+
 [How to extend Wowza Streaming Engine using the Wowza IDE](https://www.wowza.com/forums/content.php?759-How-to-extend-Wowza-Streaming-Engine-using-the-Wowza-IDE)
 
 Wowza Media Systems™ provides developers with a platform to create streaming applications and solutions. See [Wowza Developer Tools](https://www.wowza.com/resources/developers) to learn more about our APIs and SDK.
