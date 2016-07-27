@@ -108,3 +108,5 @@ Wowza Media Systems™ provides developers with a platform to create streaming a
 
 ## License
 This code is distributed under the [Wowza Public License](https://github.com/WowzaMediaSystems/wse-example-ad-insertion/blob/master/LICENSE.txt).
+
+![alt tag](http://wowzalogs.com/stats/githubimage.php?plugin=wse-example-ad-insertion)
