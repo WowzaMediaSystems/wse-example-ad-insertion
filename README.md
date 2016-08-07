@@ -47,7 +47,7 @@ The ad demo HTTP Provider allows Wowza Streaming Engine to accept an HTTP POST r
 ```
 <HTTPProvider>
 	<BaseClass>com.wowza.wms.plugin.addemo.HTTPProviderAdBreakInsertion</BaseClass>
-	<RequestFilters>insertadmarker</RequestFilters>
+	<RequestFilters>insertadmarker*</RequestFilters>
 	<AuthenticationMethod>none</AuthenticationMethod>
 </HTTPProvider>
 ```
