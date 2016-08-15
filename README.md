@@ -47,11 +47,11 @@ The ad demo HTTP Provider allows Wowza Streaming Engine to accept an HTTP POST r
 ```
 <HTTPProvider>
 	<BaseClass>com.wowza.wms.plugin.addemo.HTTPProviderAdBreakInsertion</BaseClass>
-	<RequestFilters>insertadmarker</RequestFilters>
+	<RequestFilters>insertadmarker*</RequestFilters>
 	<AuthenticationMethod>none</AuthenticationMethod>
 </HTTPProvider>
 ```
-> **Important:** Be sure to add the ad demo provider immediately above the last provider in the 8086 list (**http.HTTPServerVersion**).
+> **Important:** Be sure to add the ad demo provider immediately **above** the last provider in the 8086 list (**http.HTTPServerVersion**).
 
 ## Custom module configuration
 The custom ad demo module listens for the data event while Wowza Streaming Engine transmuxes the live stream. When the module detects the event, it converts the event to an ID3 tag in the Apple HLS stream that it sends to the player.
