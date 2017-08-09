@@ -125,7 +125,6 @@ public class HTTPProviderAdBreakInsertion extends HTTProvider2Base
 			
 			// Send the data event
 			stream.sendDirect("onAdBreak", amfData);
-			((MediaStream)stream).processSendDirectMessages();				
 		}
 		catch(Exception e)
 		{
